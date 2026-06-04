@@ -1,0 +1,79 @@
+\section*{1. The Natural Numbers}
+\addcontentsline{toc}{section}{1. The Natural Numbers}
+
+\begin{exercise}{1.1}
+Prove using mathematical induction that for all positive integers \(n\),
+\[1+2+3+\cdots+n = \frac{n(n+1)}{2}.\]
+\end{exercise}
+\begin{proof}
+    Let \(X\) be the set of all natural numbers for which the formula above holds true.
+    \(1 \in X\) because \[1 = \frac{1(1+1)}{2}.\]
+    Now assume that \(n > 1\), and that \(k \in X\) for all \(k < n\). We know from our induction hypothesis
+    that the formula holds for \(n-1\), so
+    \[1 + 2 + 3 +\cdots + (n-1) = \frac{(n-1)n}{2}.\]
+    We add \(n\) to both sides to obtain
+    \begin{align*}
+        1 + 2 + 3 + \cdots + (n-1) + n &= \frac{(n-1)n}{2} + n \\
+        &= \frac{n^2 - n + 2n}{2} \\
+        &= \frac{n^2 + n}{2} \\
+        &= \frac{n(n+1)}{2}.
+    \end{align*}
+    Therefore, \(n \in X\). It follows from the principle of mathematical induction that \(X = \naturals\).
+\end{proof}
+
+\begin{exercise}{1.2}
+    Prove using mathematical induction that for all positive integers \(n\),
+    \[1^2 + 2^2 + 3^2 + \cdots + n^2 = \frac{n(2n+1)(n+1)}{6}.\]
+\end{exercise}
+\begin{proof}
+    Let \(X\) be the set of natural numbers from which the formula above holds.
+    \(1 \in X\) because \[1^2 = \frac{1(2\cdot 1 + 1)(1 + 1)}{6}.\]
+    Now suppose that \(n > 1\), and that \(k \in X\) for all \(k < n\). In particular,
+    \(n-1 \in X\) so \[1^2 + 2^2 + \cdots + (n-1)^2 = \frac{n(n-1)(2n-1)}{6}.\]
+    Adding \(n^2\) to both sides, we deduce that
+    \begin{align*}
+        1^2 + 2^2 + \cdots + (n-1)^2 + n^2 &= \frac{n(n-1)(2n-1)}{6} + n^2\\
+        &= \frac{2n^3-3n^2+n+6n^2}{6} \\
+        &= \frac{2n^3+3n^2+n}{6}\\
+        &= \frac{n(2n^2 + 3n + 1)}{6}\\
+        &= \frac{n(2n+1)(n+1)}{6}.
+    \end{align*}
+    So \(n \in X\), which closes the induction.
+\end{proof}
+
+\begin{exercise}{1.3}
+    Assuming the triangle inequality (\(|x+y| \leq |x| + |y|\)) is true,
+    show that \(|x_1 + x_2 + \cdots + x_n| \leq |x_1| + |x_2| + \cdots + |x_n|\) for all \(n \in \naturals\).
+\end{exercise}
+\begin{proof}
+    Let \(X\) be the set of all natural numbers \(n\) such that \(|x_1 + x_2 + \cdots + x_n| \leq |x_1| + |x_2| + \cdots + |x_n|\).
+    \(1 \in X\) and it's given that \(2 \in X\). Suppose that \(k \in X\) for all \(k < n\) where \(n > 2\). In particular, that means \(n-1 \in X\).
+    Therefore, \(|x_1 + x_2 + \cdots + x_{n-1}| \leq |x_1| + |x_2| + \cdots + |x_{n-1}|\). We add \(|x_n|\) to both sides to obtain
+    \[|x_1 + x_2 + \cdots + x_{n-1}| + |x_n| \leq |x_1| + |x_2| + \cdots + |x_{n-1}| + |x_n|.\]
+    Let \(y = x_1 + x_2 + \cdots + x_{n-1}\), then the left-hand side of the inequality above becomes \(|y| + |x_n|\).
+    Because \(2 \in X\), we know \(|y + x_n| \leq |y| + |x_n|\). Therefore, \(|y + x_n| \leq |x_1| + |x_2| + \cdots + |x_n|\), which
+    closes the induction and shows that \(X = \naturals\).
+\end{proof}
+
+\begin{exercise}{1.4}
+    Given a positive integer \(n\), recall that \(n! = 1 \cdot 2 \cdot 3 \cdots n\) (this is read as \(n\) \textbf{factorial}).
+    Provide and inductive definition for \(n!\). (It is customary to actually use this definition at \(n = 0\), setting \(0! = 1\).)
+\end{exercise}
+\begin{proof}
+    \[n! = n(n-1)!\]
+\end{proof}
+
+\newpage
+\begin{exercise}{1.5}
+    Prove that \(2^n < n!\) for all \(n \geq 4\).
+\end{exercise}
+\begin{proof}
+    Let \(X\) be the set of all natural numbers \(n\) such that \(2^n < n!\).
+    Define \(S := X \cup \{1, 2, 3\}\), we show that \(S = \naturals\) by induction. By definition, \(1 \in S\).
+    Now suppose that \(k \in S\) for all \(k < n\) where \(n > 1\). If \(n = 2\) or \(n = 3\), then by definition \(n \in S\).
+    If \(n = 4\), then \(2^4 = 16\) and \(4! = 24\). Clearly \(16 < 24\), therefore \(n \in X\). Now we can solely focus on the
+    cases where \(n > 4\). We know \(n-1 \in S\), so \(2^{n-1} < (n-1)!\) or \(n-1 \in \{1,2,3\}\). But
+    \(n > 4\) so \(n-1 \notin \{1,2,3\}\). So it must be the case that \(2^{n-1} < (n-1)!\).
+    Hence, \(2^n < 2(n-1)!\). But \(2(n-1)! < n(n-1)! = n!\). Therefore, \(2^n < n!\). This closes the induction and shows that \(S = \naturals\).
+\end{proof}
+

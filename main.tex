@@ -1,6 +1,18 @@
 \documentclass{article}
 
-\usepackage{amsmath, amstext, amssymb, amsthm, geometry}
+\usepackage{amsmath, amstext, amssymb, amsthm, geometry, tcolorbox}
+
+\newenvironment{exercise}[1]{
+    \begin{tcolorbox}[colback=black!5!white,colframe=black!75!black,title=Exercise #1]
+}{
+    \end{tcolorbox}
+}
+
+
+\newcommand{\naturals}{\mathbb{N}}
+\newcommand{\integers}{\mathbb{Z}}
+\newcommand{\rationals}{\mathbb{Q}}
+\newcommand{\reals}{\mathbb{R}}
 
 \begin{document}
 \tableofcontents
