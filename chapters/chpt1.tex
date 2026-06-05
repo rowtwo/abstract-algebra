@@ -236,3 +236,107 @@ By definition, we know that \(a_{n-2} + a_{n-1} = a_n\), so
 Therefore, we conclude that \(n \in X\) and that \(X = \naturals\).
 \end{enumerate}
 \end{proof}
+
+\newpage
+\begin{exercise}{1.14}
+    In this problem, you will prove some results about the \textbf{binomial coefficients}, using induction. Recall that
+    \[\binom{n}{k} = \frac{n!}{(n-k)!k!},\] where \(n\) is a positive integer, and \(0 \leq k \leq n\).
+    \begin{enumerate}[label=(\alph*)]
+        \item Prove that
+        \[\binom{n}{k} = \binom{n-1}{k} + \binom{n-1}{k-1},\] \(n \geq 2\) and \(k < n\).
+        \item Verify that \(\binom{n}{0} = 1\) and \(\binom{n}{n} = 1\). Use these facts, together with part (a), to prove
+        by induction on \(n\) that \(\binom{n}{k}\) is an integer, for all \(k\) with \(0 \leq k \leq n\).
+        \item Use part (a) and induction to prove the \textbf{Binomial Theorem}: For non-negative \(n\) and variables \(x,y,\)
+        \[(x+y)^n = \sum_{k=0}^{n}\binom{n}{k}x^{n-k}y^k\]
+    \end{enumerate}
+\end{exercise}
+\begin{proof}
+\begin{enumerate}[label=(\alph*)]
+\item Using the recursive nature of factorials, that is \[n! = n(n-1)!,\] we deduce the following:
+\begin{align*}
+    \binom{n-1}{k} + \binom{n-1}{k-1} &= \frac{(n-1)!}{k!(n-k-1)!} + \frac{(n-1)!}{(k-1)!((n-1)-(k-1))!} \\
+    &= \frac{(n-1)!}{k!(n-k-1)!} + \frac{k(n-1)!}{k!(n-k-1)!(n-k)} \\
+    &= \frac{(n-k)(n-1)! + k(n-1)!}{k!(n-k-1)!(n-k)} \\
+    &= \frac{(n-1)!(n-k+k)}{k!(n-k)!} \\
+    &= \frac{n!}{k!(n-k)!} \\
+    &= \binom{n}{k}.
+\end{align*}
+
+\item \[\binom{n}{0} = \frac{n!}{0!(n-0)!} = \frac{n!}{1\cdot n!} = 1.\]
+\[\binom{n}{n} = \frac{n!}{n!(n-n)!} = \frac{n!}{n! \cdot 1} = 1.\]
+Let \(X\) be the set of all \(n \in \naturals\) such that \(\binom{n}{k}\) is an integer, where \(0 \leq k \leq n\).
+One can manually verify that \(1 \in X\) and \(2 \in X\) (We need to verify that \(2 \in X\) because the formula we'll use assumes \(n \geq 2\)). Now, assuming that \(0 \leq k \leq n\),
+suppose that \(\binom{r}{k}\) is an integer for all \(r < n\) where \(n > 2\). From (b), we know that \(k = 0\) and \(k = n\) both result in \(\binom{n}{k}\) being an integer.
+We may now assume that \(0 < k < n\). We know from our induction hypothesis that \(\binom{n-1}{k}\) and \(\binom{n-1}{k-1}\) are both integers, and we know from (a)
+that \[\binom{n}{k} = \binom{n-1}{k} + \binom{n-1}{k-1}.\]
+Because \(\naturals\) is closed under addition, \(\binom{n}{k}\) must also be an integer. Therefore, \(n \in X\) and \(X = \naturals\).
+
+\item Let \(X\) be the set of all natural numbers \(n\) where the binomial theorem holds.
+We verify \(n = 1\):
+\begin{align*}
+    \sum_{k=0}^{1}\binom{1}{k}x^{1-k}y^k &= \binom{1}{0}x^{1}y^{0} + \binom{1}{1}x^{0}y^{1}\\
+    &= 1 \cdot x + 1 \cdot y \qquad \text{Using part (a)} \\
+    &= x + y
+\end{align*}
+Now suppose that \(k \in X\) for all \(k < n\) where \(n > 1\). In particular, we deduce that the binomial theorem is true for \(n-1\).
+Thus,
+\begin{align*}
+    (x+y)^{n-1}(x+y) &= (x+y) \cdot \sum_{k=0}^{n-1}\binom{n-1}{k}x^{n-1-k}y^{k} \\
+    &= x\cdot\sum_{k=0}^{n-1}\binom{n-1}{k}x^{n-1-k}y^k + y\cdot\sum_{k=0}^{n-1}\binom{n-1}{k}x^{n-1-k}y^{k} \\
+    &= \sum_{k=0}^{n-1}\binom{n-1}{k}x^{n-k}y^{k} + \sum_{k=0}^{n-1}\binom{n-1}{k}x^{n-1-k}y^{k+1}\\
+    &= \sum_{k=0}^{n-1}\binom{n-1}{k}x^{n-k}y^{k} + \sum_{k=1}^{n}\binom{n-1}{k-1}x^{n-k}y^{k}\\
+    &= \footnotemark\left(x^n + \sum_{k=1}^{n-1}\binom{n-1}{k}x^{n-k}y^k\right) + \left(y^n + \sum_{k=1}^{n-1}\binom{n-1}{k-1}x^{n-k}y^k\right)\\
+    &= x^n + y^n + \sum_{k=1}^{n-1}\binom{n}{k}x^{n-k}y^k \qquad \text{Using part (a)}\\
+    &= \sum_{k=0}^{n}\binom{n}{k}x^{n-k}y^k.
+\end{align*}
+This closes the induction and shows that \(X = \naturals\), as desired.
+\footnotetext{We evaluate the sums at \(k = 0\) and \(k = n\) to ensure that their indexes match and that they both sum to \(n-1\), this allows us to merge both of them into one summation.}
+\end{enumerate}
+\end{proof}
+
+\begin{exercise}{1.15}
+    Criticize the inductive 'proof' showing that all cows are the same color.
+\end{exercise}
+\begin{proof}
+    The proof fails at \(n = 2\). There's no way to guarantee the first cow picked has the same color as the rest of herd (which consists of 1 other cow).
+    Indeed, if such guarantee existed, then the proof would work (Since you can guarantee ANY two cows in a herd have the same color, then the entire herd must be of the same color).
+\end{proof}
+
+\begin{exercise}{1.16}
+    Prove the converse of Theorem 1.1; that is, prove that the Principle of Mathematical Induction implies the Well-Ordering Principle.
+    (This shows that these two principles are logically equivalent, and so from an axiomatic point of view it doesn't matter which we assume is an axiom for the natural numbers.)
+\end{exercise}
+\begin{proof}
+    Let \(X\) be an arbitrary non-empty subset of \(\naturals\). Suppose, for the sake of contradiction, that \(X\) has no least element.
+    Consider \(Y = \naturals \backslash X\). We claim, and prove by induction, that \(Y = \naturals\). That would inturn show that \(X = \varnothing\) which would contradict our assumption that \(X\) is non-empty.
+    Obviously \(1 \in Y\), otherwise \(1\) would be the least element of \(X\) (there exists no \(a \in \naturals\) such that \(a < 1\)). Now suppose that \(r \in Y\) for all \(r < n\) where \(n > 1\).
+    Suppose that \(n \in Y\), but then \(n\) would be the least element of \(X\) (because \(1 \leq r < n\) are all elements of \(Y\), and thus they must not be elements of \(X\)). This contradiction forces
+    us to conclude that \(n \in Y\). We've met both demands required by the Principle of Mathematical Induction. Henceforth, \(Y = \naturals\) and we conclude that \(X\) is empty, a contradiction.
+\end{proof}
+
+% \newpage
+% \begin{exercise}{1.17}
+%     The \textit{Strong} Principle of Mathematical Induction asserts the following. Suppose that
+%     \(X\) is a subset of \(\naturals\) that satisfies that following two criteria:
+%     \begin{enumerate}[label=(\alph*)]
+%         \item \(1 \in X\), and
+%         \item If \(n > 1\) and \(n - 1 \in X\), then \(n \in X\).
+%     \end{enumerate}
+%     Then \(X = \naturals\). Prove that the Principle of Mathematical Induction holds if and only if the Strong Principle of Mathematical Induction does.
+% \end{exercise}
+% \begin{proof}[induction \(\implies\) strong induction]
+%     Let \(X\) be an arbitrary subset of \(\naturals\) that satisfies both conditions of the Strong Principle of Mathematical Induction.
+%     In other words, \(1 \in X\), and if \(n > 1\) and \(n-1 \in X\), then \(n \in X\). It suffices to show that \(k \in X\) for all \(k < n\) implies \(n \in X\).
+%     Suppose that \(k \in X\) for all \(k < n\). In particular, that means \(n-1 \in X\), which implies \(n \in X\) (Note that if \(n = 1\), then the statement is vacuously true).
+%     Thus, using the Principle of Mathematical Induction, we infer that \(X = \naturals\). This proves the Strong Principle of Mathematical Induction.
+% \end{proof}
+% \begin{proof}[strong induction \(\implies\) induction]
+%     Let \(X\) be an arbitrary subset of \(\naturals\) that satisfies both conditions of the Principle of Mathematical Induction.
+%     In other words, \(1 \in X\), and if \(k \in X\) for all \(k < n\), then \(n \in X\). We already satisfy the first condition of the Strong Principle of Mathematical Induction.
+%     It suffices to show that \(n > 1\) and \(n-1 \in X\) implies \(n \in X\). To do that, we induct on
+%     \[\footnotemark Y = \{a \in \naturals\ :\ a > 1 \text{ and }a-1\in X \text{ implies }a \in X\}.\]
+%     \footnotetext{Notice the clear usage of a new variable here, \(a\) instead of \(n\). This is to keep it clear that we're performing two different inductions at the same time,
+%     the first is being performed on the set \(X\), and the second is being performed on the set \(Y\) to prove a statement that we require to close our induction on \(X\).}
+%     Vacuously, \(1 \in Y\). From the second condition satisfied by \(X\), \(2 \in Y\). Now suppose that \(k-1 \in Y\) for \(k > 2\).
+%     That means \(k-1 > 1\) and \(k-2 \in Y\) implies \(k-1 \in Y\).
+% \end{proof}
