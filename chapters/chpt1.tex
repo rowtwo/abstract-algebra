@@ -314,29 +314,31 @@ This closes the induction and shows that \(X = \naturals\), as desired.
     us to conclude that \(n \in Y\). We've met both demands required by the Principle of Mathematical Induction. Henceforth, \(Y = \naturals\) and we conclude that \(X\) is empty, a contradiction.
 \end{proof}
 
-% \newpage
-% \begin{exercise}{1.17}
-%     The \textit{Strong} Principle of Mathematical Induction asserts the following. Suppose that
-%     \(X\) is a subset of \(\naturals\) that satisfies that following two criteria:
-%     \begin{enumerate}[label=(\alph*)]
-%         \item \(1 \in X\), and
-%         \item If \(n > 1\) and \(n - 1 \in X\), then \(n \in X\).
-%     \end{enumerate}
-%     Then \(X = \naturals\). Prove that the Principle of Mathematical Induction holds if and only if the Strong Principle of Mathematical Induction does.
-% \end{exercise}
-% \begin{proof}[induction \(\implies\) strong induction]
-%     Let \(X\) be an arbitrary subset of \(\naturals\) that satisfies both conditions of the Strong Principle of Mathematical Induction.
-%     In other words, \(1 \in X\), and if \(n > 1\) and \(n-1 \in X\), then \(n \in X\). It suffices to show that \(k \in X\) for all \(k < n\) implies \(n \in X\).
-%     Suppose that \(k \in X\) for all \(k < n\). In particular, that means \(n-1 \in X\), which implies \(n \in X\) (Note that if \(n = 1\), then the statement is vacuously true).
-%     Thus, using the Principle of Mathematical Induction, we infer that \(X = \naturals\). This proves the Strong Principle of Mathematical Induction.
-% \end{proof}
-% \begin{proof}[strong induction \(\implies\) induction]
-%     Let \(X\) be an arbitrary subset of \(\naturals\) that satisfies both conditions of the Principle of Mathematical Induction.
-%     In other words, \(1 \in X\), and if \(k \in X\) for all \(k < n\), then \(n \in X\). We already satisfy the first condition of the Strong Principle of Mathematical Induction.
-%     It suffices to show that \(n > 1\) and \(n-1 \in X\) implies \(n \in X\). To do that, we induct on
-%     \[\footnotemark Y = \{a \in \naturals\ :\ a > 1 \text{ and }a-1\in X \text{ implies }a \in X\}.\]
-%     \footnotetext{Notice the clear usage of a new variable here, \(a\) instead of \(n\). This is to keep it clear that we're performing two different inductions at the same time,
-%     the first is being performed on the set \(X\), and the second is being performed on the set \(Y\) to prove a statement that we require to close our induction on \(X\).}
-%     Vacuously, \(1 \in Y\). From the second condition satisfied by \(X\), \(2 \in Y\). Now suppose that \(k-1 \in Y\) for \(k > 2\).
-%     That means \(k-1 > 1\) and \(k-2 \in Y\) implies \(k-1 \in Y\).
-% \end{proof}
+\newpage
+\begin{exercise}{1.17}
+    The \textit{Strong} Principle of Mathematical Induction asserts the following. Suppose that
+    \(X\) is a subset of \(\naturals\) that satisfies that following two criteria:
+    \begin{enumerate}[label=(\alph*)]
+        \item \(1 \in X\), and
+        \item If \(n > 1\) and \(n - 1 \in X\), then \(n \in X\).
+    \end{enumerate}
+    Then \(X = \naturals\). Prove that the Principle of Mathematical Induction holds if and only if the Strong Principle of Mathematical Induction does.
+\end{exercise}
+\begin{proof}[induction \(\implies\) strong induction]
+    Let \(X\) be an arbitrary subset of \(\naturals\) that satisfies both conditions of the Strong Principle of Mathematical Induction.
+    In other words, \(1 \in X\), and if \(n > 1\) and \(n-1 \in X\), then \(n \in X\). It suffices to show that \(k \in X\) for all \(k < n\) implies \(n \in X\).
+    Suppose that \(k \in X\) for all \(k < n\). In particular, that means \(n-1 \in X\), which implies \(n \in X\) (Note that if \(n = 1\), then the statement is vacuously true).
+    Thus, using the Principle of Mathematical Induction, we infer that \(X = \naturals\). This proves the Strong Principle of Mathematical Induction.
+\end{proof}
+\begin{proof}[strong induction \(\implies\) induction]
+    Let \(X\) be an arbitrary subset of \(\naturals\) that satisfies both conditions of the Principle of Mathematical Induction.
+    In other words, \(1 \in X\), and if \(k \in X\) for all \(k < n\), then \(n \in X\). We already satisfy the first condition of the Strong Principle of Mathematical Induction.
+    It suffices to show that \(n-1 \in X\) for \(n > 1\) implies \(n \in X\). To do that, we induct on the following set:
+    \[\footnotemark Y := \{a \in \naturals\ :\ r\in X \text{ for all }r<a\}.\]
+    \footnotetext{Notice that we're performing two different inductions at the same time,
+    the first is being performed on the set \(X\), and the second is being performed on the set \(Y\) to prove a statement that we require to close our induction on \(X\).}
+    Vacuously, \(1 \in Y\). Now suppose that \(k-1 \in Y\) for \(k > 1\).
+    That means \(r \in X\) for all \(r < k-1\), but we know from the properties of \(X\) that that implies \(k \in X\). Hence, \(r \in X\) for all \(r < k\).
+    So \(k \in Y\). From the Strong Principle of Mathematical Induction, \(Y = \naturals\). Going back to our induction on \(X\), we know \(n-1 \in Y\). So \(r \in X\) for all \(r < n-1\), and
+    because \(n-1 \in X\), \(r\in X\) for all \(r < n\). From the properties of \(X\), that implies \(n \in X\). Henceforth, \(X = \naturals\) follows from the Strong Principle of Mathematical Induction.
+\end{proof}
