@@ -1,0 +1,78 @@
+\section*{2. The Integers}
+\addcontentsline{toc}{section}{2. The Integers}
+
+\begin{exercise}{2.1}
+\begin{enumerate}[label=(\alph*)]
+\item Find the greatest common divisor of \(34\) and \(21\), using Euclid's Algorithm. Then express their gcd as a linear combination of \(34\) and \(21\).
+\item Now do the same for \(2424\) and \(772\).
+\item Do the same for \(2007\) and \(203\).
+\item Do the same for \(3604\) and \(4770\).
+\end{enumerate}
+\end{exercise}
+\begin{proof}
+    Tedious.
+\end{proof}
+
+\begin{exercise}{2.2}
+\begin{enumerate}[label=(\alph*)]
+\item Prove that \(\gcd(a,b)\) divides \(a-b\). This sometimes provides a short cut in finding \(\gcd\)s.
+\item Use this to find \(\gcd(1962, 1965)\).
+\item Now find \(\gcd(1961, 1965)\).
+\end{enumerate}
+\end{exercise}
+\begin{proof}
+\begin{enumerate}[label=(\alph*)]
+\item By definition, \(\gcd(a,b)|a\) and \(\gcd(a,b)|b\). So \(a = \alpha\gcd(a,b)\) and \(b = \beta\gcd(a,b)\) for some \(\alpha,\beta\).
+Hence, \(a-b = \alpha\gcd(a,b) - \beta\gcd(a,b) = \gcd(a,b)(\alpha - \beta)\). Therefore, \(\gcd(a,b) | a-b\).
+\item \(1965 - 1962 = 3\). The only factors of \(3\) are \(1, 3\). \(3 | 1962\) and \(3 | 1965\), so \(\gcd(1962, 1965) = 3\).
+\item \(1965 - 1961 = 4\). The factors of \(4\) are \(1, 2, 4\). Clearly \(4\) and \(2\) cannot be divisors of \(1961\) nor \(1965\). Hence, \(\gcd(1961, 1965) = 1\).
+\end{enumerate}
+\end{proof}
+
+\begin{exercise}{2.3}
+    Prove that the set of all linear combinations of \(a\) and \(b\) are precisely the multiples of \(\gcd(a,b)\).
+\end{exercise}
+\begin{proof}
+    \[S := \{ax+by\ :\ \text{for arbitrary }x,y \in \integers\}.\]
+    Let \(k \in S\) be an arbitrary element.
+    We know \(\gcd(a,b) \mid a\) and \(\gcd(a,b) \mid b\), therefore there exists \(\alpha, \beta\) such that \(a = \alpha\gcd(a,b)\) and \(b = \beta\gcd(a,b)\).
+    We also know that \(k = ax+by\) for some \(x,y \in \integers\). With substitution, we see that \[k = (\alpha\gcd(a,b))x + (\beta\gcd(a,b))y = \gcd(a,b)(\alpha x+\beta y).\]
+    Now let \(k \in \integers\) be arbitrary, then \(k\gcd(a,b)\) is an arbitrary multiple of \(\gcd(a,b)\).
+    From the GCD identity, \(\gcd(a,b) = ax+by\) for some \(x,y \in \integers\). Thus, \[k\gcd(a,b) = k(ax+by) = akx + bky \in S.\]
+\end{proof}
+
+\begin{exercise}{2.4}
+    Two numbers are said to be \textbf{relatively prime} if their \(\gcd\) is \(1\). Prove that \(a\) and \(b\) are relatively prime
+    if and only if every integer can be written as a linear combination of \(a\) and \(b\).
+\end{exercise}
+\begin{proof}
+    Let \(a,b\) be arbitrary relatively prime integers. By definition, \(\gcd(a,b) = 1\). It follows
+    from the GCD identity that there exists \(x,y \in \integers\) such that \(\gcd(a,b) = ax+by = 1\).
+    Let \(k\) be an arbitrary integer, then \(k(ax+by) = a(kx)+b(ky) = k\) is a linear combination of \(a\) and \(b\) that equals \(k\).
+    Now suppose that every integer can be written as a linear combination of \(a\) and \(b\). In particular, there exists \(x,y \in \integers\) such that
+    \(ax+by = 1\). From Corollary \(2.5\), it follows immediately that \(ax+by = 1 = \gcd(a,b)\). Hence, \(a\) and \(b\) are relatively prime.
+\end{proof}
+
+\begin{exercise}{2.5}
+    Prove Theorem 2.6. That is, use induction to prove that if the prime \(p\) divides \(a_1 a_2 \cdots a_n\), then \(p\) divides \(a_i\), for some \(i\).
+\end{exercise}
+\begin{proof}
+    \footnotemark We induct on \(n\). If \(n = 1\), then the statement is trivial. And \(n = 2\) is true because \(p\) is prime.
+    Now suppose that the statement is true for all \(k < n\) where \(n > 2\). In particular, the statement is true for \(k = n-1\).
+    Suppose that \(p\) divides \(a_1 a_2 \cdots a_n\), from \(p\)'s prime properties, we know that \(p \mid a_n\) or \(p \mid a_1 a_2 \cdots a_{n-1}\).
+    Suppose the former, then the statement holds. Suppose the latter, from our induction hypothesis, we know that \(p \mid a_i\) for some \(1 \leq i \leq n-1\).
+    This closes the induction.
+\end{proof}
+\footnotetext{Starting from now, I'll refrain from using overly formal induction proofs that involve set definitions.}
+
+\begin{exercise}{2.6}
+    Suppose that \(a\) and \(b\) are positive integers. If \(a+b\) is prime, prove that \(\gcd(a,b) = 1\).
+\end{exercise}
+\begin{proof}
+    Suppose that \(a + b\) is prime. Assume, for the sake of contradiction, that \(\gcd(a,b) > 1\).
+    By definition, there exists \(\alpha, \beta \in \integers\) such that
+    \(a = \alpha\gcd(a,b)\) and \(b = \beta\gcd(a,b)\). Because \(a > 0\), \(b > 0\) and \(\gcd(a,b) > 0\), we deduce
+    that \(\alpha > 0\) and \(\beta > 0\). By substitution, \(a + b = \gcd(a,b)(\alpha + \beta)\).
+    From Theorem \(2.7\), we know that \(a+b\) must be irreducible. But \(\gcd(a,b) > 1\) and \(\alpha + \beta > 1\).
+    This contradiction shows that \(\gcd(a,b) = 1\), as desired.
+\end{proof}
